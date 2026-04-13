@@ -106,14 +106,14 @@ export default function Home() {
             { text: 'that turn complexity',      color: 'rgba(255,255,255,0.38)', delay: 0.63 },
             { text: 'into clarity.',             color: 'rgba(255,255,255,0.38)', delay: 0.70 },
           ].map(({ text, color, delay, italic }) => (
-            <div key={text} style={{ overflow: 'hidden' }}>
+            <div key={text} style={{ overflow: 'visible', paddingBottom: '0.12em' }}>
               <motion.div
                 initial={{ y: '110%' }} animate={{ y: '0%' }}
                 transition={{ duration: 0.85, delay, ease: expo }}
                 style={{
                   fontFamily: '"Cormorant Garamond", serif',
                   fontSize: 'clamp(2.4rem, 7vw, 8rem)',
-                  lineHeight: 0.93, letterSpacing: '-0.03em',
+                  lineHeight: 1.0, letterSpacing: '-0.03em',
                   color, fontStyle: italic ? 'italic' : 'normal', fontWeight: 500,
                 }}
               >{text}</motion.div>
