@@ -1,18 +1,16 @@
 import { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
 
 const BLUE = '#3B82F6'
 
 const links = [
-  { label: 'Work',   to: '/work' },
-  { label: 'About',  to: '/about' },
-  { label: 'Resume', to: '/resume' },
+  { label: 'Work',   page: 'work' },
+  { label: 'About',  page: 'about' },
+  { label: 'Resume', page: 'resume' },
 ]
 
-export function Nav() {
+export function Nav({ page, setPage }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen]         = useState(false)
-  const { pathname }            = useLocation()
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 60)
@@ -20,7 +18,12 @@ export function Nav() {
     return () => window.removeEventListener('scroll', fn)
   }, [])
 
-  useEffect(() => { setOpen(false) }, [pathname])
+  // close mobile menu and scroll to top on page change
+  const go = (p) => {
+    setPage(p)
+    setOpen(false)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   return (
     <>
@@ -38,29 +41,31 @@ export function Nav() {
           height: 64,
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         }}>
-          <Link to="/" style={{
+          {/* Logo — goes home */}
+          <button onClick={() => go('home')} style={{
             fontFamily: '"Cormorant Garamond", serif',
             fontSize: '1.25rem', fontWeight: 500,
-            color: 'white', textDecoration: 'none',
+            color: 'white', background: 'none', border: 'none',
+            cursor: 'pointer', padding: 0,
             transition: 'color 0.2s',
           }}
           onMouseEnter={e => e.currentTarget.style.color = BLUE}
           onMouseLeave={e => e.currentTarget.style.color = 'white'}
-          >CK</Link>
+          >CK</button>
 
           {/* Desktop links */}
           <div className="hidden-mobile" style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
-            {links.map(({ label, to }) => (
-              <Link key={to} to={to} style={{
+            {links.map(({ label, page: p }) => (
+              <button key={p} onClick={() => go(p)} style={{
                 fontSize: '0.7rem', textTransform: 'uppercase',
                 letterSpacing: '0.15em', fontWeight: 500,
-                textDecoration: 'none',
-                color: pathname === to ? BLUE : 'rgba(255,255,255,0.72)',
+                background: 'none', border: 'none', cursor: 'pointer', padding: 0,
+                color: page === p ? BLUE : 'rgba(255,255,255,0.72)',
                 transition: 'color 0.2s',
               }}
-              onMouseEnter={e => { if (pathname !== to) e.currentTarget.style.color = 'white' }}
-              onMouseLeave={e => { if (pathname !== to) e.currentTarget.style.color = 'rgba(255,255,255,0.72)' }}
-              >{label}</Link>
+              onMouseEnter={e => { if (page !== p) e.currentTarget.style.color = 'white' }}
+              onMouseLeave={e => { if (page !== p) e.currentTarget.style.color = 'rgba(255,255,255,0.72)' }}
+              >{label}</button>
             ))}
             <a href="mailto:c.kenreigh@gmail.com" style={{
               fontSize: '0.7rem', textTransform: 'uppercase',
@@ -68,8 +73,7 @@ export function Nav() {
               textDecoration: 'none',
               color: 'rgba(255,255,255,0.82)',
               border: '1px solid rgba(255,255,255,0.25)',
-              borderRadius: 9999,
-              padding: '0.5rem 1.25rem',
+              borderRadius: 9999, padding: '0.5rem 1.25rem',
               transition: 'all 0.25s',
             }}
             onMouseEnter={e => { e.currentTarget.style.color = BLUE; e.currentTarget.style.borderColor = BLUE }}
@@ -77,7 +81,7 @@ export function Nav() {
             >Contact</a>
           </div>
 
-          {/* Hamburger — mobile */}
+          {/* Hamburger */}
           <button
             className="show-mobile"
             onClick={() => setOpen(!open)}
@@ -92,13 +96,11 @@ export function Nav() {
             {[0,1,2].map(i => (
               <span key={i} style={{
                 display: 'block', width: 24, height: 1.5, background: 'white',
-                borderRadius: 2,
-                transition: 'all 0.3s',
+                borderRadius: 2, transition: 'all 0.3s',
                 transform: open
                   ? i === 0 ? 'rotate(45deg) translate(4.5px, 4.5px)'
                   : i === 2 ? 'rotate(-45deg) translate(4.5px,-4.5px)'
-                  : 'none'
-                  : 'none',
+                  : 'none' : 'none',
                 opacity: open && i === 1 ? 0 : 1,
               }} />
             ))}
@@ -106,7 +108,7 @@ export function Nav() {
         </div>
       </nav>
 
-      {/* Mobile full-screen menu */}
+      {/* Mobile menu */}
       <div style={{
         position: 'fixed', inset: 0, zIndex: 90,
         background: '#080808',
@@ -116,21 +118,21 @@ export function Nav() {
         pointerEvents: open ? 'auto' : 'none',
         transition: 'opacity 0.35s ease',
       }}>
-        {[...links, { label: 'Contact', to: null, href: 'mailto:c.kenreigh@gmail.com' }].map(({ label, to, href }) =>
-          to ? (
-            <Link key={to} to={to} style={{
+        {[...links, { label: 'Contact', page: null }].map(({ label, page: p }) =>
+          p ? (
+            <button key={p} onClick={() => go(p)} style={{
               fontFamily: '"Cormorant Garamond", serif',
               fontSize: 'clamp(2.2rem, 9vw, 4.5rem)',
-              color: 'white', textDecoration: 'none',
-              marginBottom: '0.25rem',
+              color: 'white', background: 'none', border: 'none',
+              cursor: 'pointer', textAlign: 'left', padding: 0,
+              marginBottom: '0.25rem', lineHeight: 1.15,
               transition: 'color 0.2s',
-              lineHeight: 1.15,
             }}
             onMouseEnter={e => e.currentTarget.style.color = BLUE}
             onMouseLeave={e => e.currentTarget.style.color = 'white'}
-            >{label}</Link>
+            >{label}</button>
           ) : (
-            <a key={label} href={href} style={{
+            <a key={label} href="mailto:c.kenreigh@gmail.com" style={{
               fontFamily: '"Cormorant Garamond", serif',
               fontSize: 'clamp(2.2rem, 9vw, 4.5rem)',
               color: 'rgba(255,255,255,0.40)', textDecoration: 'none',
