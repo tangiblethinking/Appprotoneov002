@@ -1,8 +1,11 @@
-import { Link } from 'react-router-dom'
-
 const BLUE = '#3B82F6'
 
-export function Footer() {
+export function Footer({ setPage }) {
+  const go = (p) => {
+    setPage(p)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
     <footer style={{ borderTop: '1px solid rgba(255,255,255,0.09)', background: '#080808' }}>
       <div style={{
@@ -23,31 +26,28 @@ export function Footer() {
 
         <nav style={{ display: 'flex', flexWrap: 'wrap', gap: '1.25rem', alignItems: 'center' }}>
           {[
-            { label: 'Work',     to: '/work',    internal: true },
-            { label: 'About',    to: '/about',   internal: true },
-            { label: 'Resume',   to: '/resume',  internal: true },
-            { label: 'LinkedIn', to: 'https://www.linkedin.com/in/kenreigh/', internal: false },
-          ].map(({ label, to, internal }) =>
-            internal ? (
-              <Link key={label} to={to} style={{
-                fontSize: '0.65rem', textTransform: 'uppercase',
-                letterSpacing: '0.12em', color: 'rgba(255,255,255,0.55)',
-                textDecoration: 'none', transition: 'color 0.2s',
-              }}
-              onMouseEnter={e => e.currentTarget.style.color = BLUE}
-              onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.55)'}
-              >{label}</Link>
-            ) : (
-              <a key={label} href={to} target="_blank" rel="noopener noreferrer" style={{
-                fontSize: '0.65rem', textTransform: 'uppercase',
-                letterSpacing: '0.12em', color: 'rgba(255,255,255,0.55)',
-                textDecoration: 'none', transition: 'color 0.2s',
-              }}
-              onMouseEnter={e => e.currentTarget.style.color = BLUE}
-              onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.55)'}
-              >{label} ↗</a>
-            )
-          )}
+            { label: 'Work',   p: 'work' },
+            { label: 'About',  p: 'about' },
+            { label: 'Resume', p: 'resume' },
+          ].map(({ label, p }) => (
+            <button key={p} onClick={() => go(p)} style={{
+              fontSize: '0.65rem', textTransform: 'uppercase',
+              letterSpacing: '0.12em', color: 'rgba(255,255,255,0.55)',
+              background: 'none', border: 'none', cursor: 'pointer', padding: 0,
+              transition: 'color 0.2s',
+            }}
+            onMouseEnter={e => e.currentTarget.style.color = BLUE}
+            onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.55)'}
+            >{label}</button>
+          ))}
+          <a href="https://www.linkedin.com/in/kenreigh/" target="_blank" rel="noopener noreferrer" style={{
+            fontSize: '0.65rem', textTransform: 'uppercase',
+            letterSpacing: '0.12em', color: 'rgba(255,255,255,0.55)',
+            textDecoration: 'none', transition: 'color 0.2s',
+          }}
+          onMouseEnter={e => e.currentTarget.style.color = BLUE}
+          onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.55)'}
+          >LinkedIn ↗</a>
         </nav>
 
         <div style={{ textAlign: 'right' }}>
