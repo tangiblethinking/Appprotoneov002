@@ -5,24 +5,23 @@ import { FadeUp, SlideIn } from '../components/Motion'
 import { CaseStudyCard } from '../components/CaseStudyCard'
 import { caseStudies } from '../lib/caseStudies'
 
-const expo = [0.16, 1, 0.3, 1]
+const expo  = [0.16, 1, 0.3, 1]
+const BLUE  = '#3B82F6'
+const BLUE2 = '#2563EB'
 
-/* ── Animated counter ── */
 function Counter({ target, suffix = '' }) {
   const [val, setVal] = useState(0)
   const ref = useRef(null)
   const started = useRef(false)
-
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting && !started.current) {
         started.current = true
-        const duration = 1600
-        const start = Date.now()
+        const dur = 1600, t0 = Date.now()
         const tick = () => {
-          const p = Math.min((Date.now() - start) / duration, 1)
-          const eased = 1 - Math.pow(1 - p, 4)
-          setVal(Math.round(eased * target))
+          const p = Math.min((Date.now() - t0) / dur, 1)
+          const e = 1 - Math.pow(1 - p, 4)
+          setVal(Math.round(e * target))
           if (p < 1) requestAnimationFrame(tick)
         }
         requestAnimationFrame(tick)
@@ -31,21 +30,20 @@ function Counter({ target, suffix = '' }) {
     if (ref.current) observer.observe(ref.current)
     return () => observer.disconnect()
   }, [target])
-
   return <span ref={ref}>{val}{suffix}</span>
 }
 
 const metrics = [
-  { value: 43,  suffix: '%', label: 'Checkout abandonment reduced',  sub: 'Plexus Worldwide' },
-  { value: 60,  suffix: '%', label: 'Tool consolidation efficiency',  sub: 'Design Ops · 6→1' },
-  { value: 35,  suffix: '%', label: 'Sprint velocity increase',       sub: 'AI-augmented workflows' },
-  { value: 11,  suffix: '+', label: 'Years in product design',        sub: 'e-Com · Enterprise · Industrial' },
-  { value: 5,   suffix: '',  label: 'Designers led',                  sub: 'Direct reports · Plexus' },
+  { value: 43, suffix: '%', label: 'Checkout abandonment reduced', sub: 'Plexus Worldwide' },
+  { value: 60, suffix: '%', label: 'Tool consolidation efficiency', sub: 'Design Ops · 6→1' },
+  { value: 35, suffix: '%', label: 'Sprint velocity increase',      sub: 'AI-augmented workflows' },
+  { value: 11, suffix: '+', label: 'Years in product design',       sub: 'e-Com · Enterprise · Industrial' },
+  { value: 5,  suffix: '',  label: 'Designers led',                 sub: 'Direct reports · Plexus' },
 ]
 
 const capabilities = [
   {
-    verb: 'Lead', color: '#C8FF00',
+    verb: 'Lead', color: BLUE,
     headline: 'I grow design organizations.',
     body: 'I build the team infrastructure that makes great design scalable — recruiting, mentoring, structuring critique, and creating a culture where designers do their best work. At Plexus, I led 5 designers across UX, content, and interaction with direct ownership of their growth, allocation, and quality.',
     items: ['Team structure & hiring', 'Design critique systems', '1:1 development & coaching', 'Cross-functional alignment', 'Design maturity roadmaps'],
@@ -64,52 +62,49 @@ const capabilities = [
   },
 ]
 
+/* shared section padding */
+const SP = 'clamp(3.5rem,7vw,6.5rem) clamp(1rem,4vw,2.5rem)'
+const MAX = { maxWidth: 1400, margin: '0 auto' }
+
 export default function Home() {
   return (
     <main>
 
       {/* ── HERO ── */}
       <section style={{
-        minHeight: '100vh', background: '#080808',
+        minHeight: '100svh', background: '#080808',
         display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
-        padding: 'clamp(1.5rem,5vw,5rem)',
-        paddingTop: '8rem', paddingBottom: '5rem',
+        padding: 'clamp(1rem,4vw,5rem)',
+        paddingTop: '7rem', paddingBottom: 'clamp(3rem,6vw,5rem)',
         position: 'relative', overflow: 'hidden',
       }} className="grid-bg">
 
-        {/* Status pill */}
         <motion.div
           initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          style={{
-            position: 'absolute', top: '5.5rem', left: 'clamp(1.5rem,5vw,5rem)',
-            display: 'flex', alignItems: 'center', gap: 12,
-          }}
+          style={{ position: 'absolute', top: '4.8rem', left: 'clamp(1rem,4vw,5rem)', display: 'flex', alignItems: 'center', gap: 12 }}
         >
-          <span style={{ fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.25)' }}>
-            Portfolio · 2025
+          <span style={{ fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.40)' }}>
+            Portfolio · 2026
           </span>
-          <span style={{ display: 'block', width: 32, height: 1, background: 'rgba(255,255,255,0.15)' }} />
-          <span style={{ fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(200,255,0,0.6)' }}>
+          <span style={{ display: 'block', width: 28, height: 1, background: 'rgba(255,255,255,0.18)' }} />
+          <span style={{ fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(59,130,246,0.75)' }}>
             Available for Director Roles
           </span>
         </motion.div>
 
-        {/* Headline */}
-        <div style={{ maxWidth: 1400, width: '100%' }}>
+        <div style={{ ...MAX, width: '100%' }}>
           <motion.p
             initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.35, ease: expo }}
-            style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.3)', marginBottom: '1.25rem' }}
-          >
-            Christopher Kenreigh
-          </motion.p>
+            style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.45)', marginBottom: '1.25rem' }}
+          >Christopher Kenreigh</motion.p>
 
           {[
-            { text: 'I build design',         color: 'white',              delay: 0.45 },
-            { text: 'organizations',           color: '#C8FF00',            delay: 0.55, italic: true },
-            { text: 'that turn complexity',    color: 'rgba(255,255,255,0.35)', delay: 0.63 },
-            { text: 'into clarity.',           color: 'rgba(255,255,255,0.35)', delay: 0.70 },
+            { text: 'I build design',           color: 'white',                  delay: 0.45 },
+            { text: 'organizations',             color: BLUE,                     delay: 0.55, italic: true },
+            { text: 'that turn complexity',      color: 'rgba(255,255,255,0.38)', delay: 0.63 },
+            { text: 'into clarity.',             color: 'rgba(255,255,255,0.38)', delay: 0.70 },
           ].map(({ text, color, delay, italic }) => (
             <div key={text} style={{ overflow: 'hidden' }}>
               <motion.div
@@ -117,81 +112,77 @@ export default function Home() {
                 transition={{ duration: 0.85, delay, ease: expo }}
                 style={{
                   fontFamily: '"Cormorant Garamond", serif',
-                  fontSize: 'clamp(2.8rem, 8vw, 8rem)',
-                  lineHeight: 0.92, letterSpacing: '-0.04em',
-                  color, fontStyle: italic ? 'italic' : 'normal',
-                  fontWeight: 500,
+                  fontSize: 'clamp(2.4rem, 7vw, 8rem)',
+                  lineHeight: 0.93, letterSpacing: '-0.03em',
+                  color, fontStyle: italic ? 'italic' : 'normal', fontWeight: 500,
                 }}
-              >
-                {text}
-              </motion.div>
+              >{text}</motion.div>
             </div>
           ))}
 
-          {/* CTA row */}
           <motion.div
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.95, ease: expo }}
-            style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '1rem', marginTop: '3rem' }}
+            style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '1rem', marginTop: 'clamp(1.5rem,4vw,3rem)' }}
           >
-            <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.4)', maxWidth: 380, lineHeight: 1.65, margin: 0 }}>
+            <p style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.55)', maxWidth: 380, lineHeight: 1.65, margin: 0 }}>
               Director of UX & Product Design · 11+ years across e-commerce, enterprise, and industrial.
             </p>
-            <div style={{ display: 'flex', gap: '0.75rem', marginLeft: 'auto', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
               <Link to="/work" style={{
                 fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.15em',
-                fontWeight: 500, color: 'white', border: '1px solid rgba(255,255,255,0.2)',
+                fontWeight: 500, color: 'white', border: '1px solid rgba(255,255,255,0.25)',
                 borderRadius: 9999, padding: '0.75rem 1.5rem', textDecoration: 'none',
-                transition: 'all 0.25s',
+                transition: 'all 0.25s', display: 'inline-flex', alignItems: 'center',
+                minHeight: 44,
               }}
-              onMouseEnter={e => { e.target.style.color='#C8FF00'; e.target.style.borderColor='#C8FF00' }}
-              onMouseLeave={e => { e.target.style.color='white'; e.target.style.borderColor='rgba(255,255,255,0.2)' }}
-              >
-                View Work →
-              </Link>
+              onMouseEnter={e => { e.currentTarget.style.color=BLUE; e.currentTarget.style.borderColor=BLUE }}
+              onMouseLeave={e => { e.currentTarget.style.color='white'; e.currentTarget.style.borderColor='rgba(255,255,255,0.25)' }}
+              >View Work →</Link>
               <a href="mailto:c.kenreigh@gmail.com" style={{
                 fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.15em',
-                fontWeight: 500, color: '#080808', background: '#C8FF00',
+                fontWeight: 500, color: 'white', background: BLUE,
                 borderRadius: 9999, padding: '0.75rem 1.5rem', textDecoration: 'none',
-                transition: 'background 0.25s',
+                transition: 'background 0.25s', display: 'inline-flex', alignItems: 'center',
+                minHeight: 44,
               }}
-              onMouseEnter={e => e.target.style.background='white'}
-              onMouseLeave={e => e.target.style.background='#C8FF00'}
-              >
-                Contact
-              </a>
+              onMouseEnter={e => e.currentTarget.style.background=BLUE2}
+              onMouseLeave={e => e.currentTarget.style.background=BLUE}
+              >Contact</a>
             </div>
           </motion.div>
         </div>
 
-        {/* Scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ delay: 1.4 }}
-          style={{ position: 'absolute', bottom: '2rem', right: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}
+          style={{ position: 'absolute', bottom: '2rem', right: 'clamp(1rem,4vw,2rem)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}
         >
-          <span style={{ fontSize: '0.55rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.2)' }}>Scroll</span>
-          <div style={{ width: 1, height: 40, background: 'rgba(255,255,255,0.1)', position: 'relative', overflow: 'hidden' }}>
-            <div className="scroll-dot" style={{ position: 'absolute', top: 0, width: '100%', height: '33%', background: '#C8FF00', opacity: 0.6 }} />
+          <span style={{ fontSize: '0.55rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.42)' }}>Scroll</span>
+          <div style={{ width: 1, height: 36, background: 'rgba(255,255,255,0.12)', position: 'relative', overflow: 'hidden' }}>
+            <div className="scroll-dot" style={{ position: 'absolute', top: 0, width: '100%', height: '33%', background: BLUE, opacity: 0.7 }} />
           </div>
         </motion.div>
       </section>
 
       {/* ── METRICS ── */}
-      <section style={{ background: '#1A1A1A', borderTop: '1px solid rgba(255,255,255,0.08)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
-        <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 2rem' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(160px,1fr))' }}>
+      <section style={{ background: '#111111', borderTop: '1px solid rgba(255,255,255,0.09)', borderBottom: '1px solid rgba(255,255,255,0.09)' }}>
+        <div style={{ ...MAX, padding: '0 clamp(1rem,4vw,2.5rem)' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(140px,1fr))' }}>
             {metrics.map((m, i) => (
               <motion.div key={m.label}
                 initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.08, ease: expo }}
-                style={{ padding: '2rem 1.5rem', borderRight: i < metrics.length - 1 ? '1px solid rgba(255,255,255,0.08)' : 'none' }}
+                style={{
+                  padding: 'clamp(1.25rem,3vw,2rem) clamp(0.75rem,2vw,1.5rem)',
+                  borderRight: i < metrics.length - 1 ? '1px solid rgba(255,255,255,0.09)' : 'none',
+                }}
               >
-                <p style={{ fontFamily: '"Cormorant Garamond",serif', fontSize: 'clamp(1.75rem,3vw,2.5rem)', color: '#C8FF00', margin: '0 0 6px', lineHeight: 1 }}>
+                <p style={{ fontFamily: '"Cormorant Garamond",serif', fontSize: 'clamp(1.6rem,3vw,2.5rem)', color: BLUE, margin: '0 0 6px', lineHeight: 1 }}>
                   <Counter target={m.value} suffix={m.suffix} />
                 </p>
-                <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.45)', margin: '0 0 3px', lineHeight: 1.4 }}>{m.label}</p>
-                <p style={{ fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'rgba(255,255,255,0.2)', margin: 0 }}>{m.sub}</p>
+                <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.68)', margin: '0 0 3px', lineHeight: 1.4 }}>{m.label}</p>
+                <p style={{ fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'rgba(255,255,255,0.38)', margin: 0 }}>{m.sub}</p>
               </motion.div>
             ))}
           </div>
@@ -199,94 +190,89 @@ export default function Home() {
       </section>
 
       {/* ── ABOUT TEASER ── */}
-      <section style={{ background: '#F4F1EA', padding: 'clamp(4rem,8vw,7rem) clamp(1.5rem,5vw,5rem)' }}>
-        <div style={{ maxWidth: 1400, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: 'clamp(2rem,5vw,5rem)', alignItems: 'start' }}>
+      <section style={{ background: '#F4F1EA', padding: SP }}>
+        <div style={{ ...MAX, display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(260px,1fr))', gap: 'clamp(2rem,5vw,5rem)', alignItems: 'start' }}>
           <SlideIn>
-            <p style={{ fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(8,8,8,0.3)', marginBottom: 12 }}>About</p>
-            <div style={{ width: 32, height: 1, background: 'rgba(8,8,8,0.15)', marginBottom: 24 }} />
-            <p style={{ fontSize: '0.75rem', color: 'rgba(8,8,8,0.35)', lineHeight: 1.6 }}>Phoenix, AZ · Available Nationwide</p>
+            <p style={{ fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(8,8,8,0.38)', marginBottom: 12 }}>About</p>
+            <hr className="divider-light" style={{ marginBottom: 20 }} />
+            <p style={{ fontSize: '0.75rem', color: 'rgba(8,8,8,0.48)', lineHeight: 1.6 }}>Phoenix, AZ · Available Nationwide</p>
           </SlideIn>
           <div>
             <FadeUp>
-              <h2 style={{ fontFamily: '"Cormorant Garamond",serif', fontSize: 'clamp(1.6rem,3.5vw,3rem)', color: '#080808', lineHeight: 1.08, marginBottom: '2rem', fontWeight: 500 }}>
+              <h2 style={{ fontFamily: '"Cormorant Garamond",serif', fontSize: 'clamp(1.5rem,3.5vw,3rem)', color: '#080808', lineHeight: 1.08, marginBottom: '1.75rem', fontWeight: 500 }}>
                 A design executive who measures success in{' '}
-                <em style={{ color: '#FF6B35', fontStyle: 'normal' }}>business outcomes</em>,
-                not deliverables.
+                <em style={{ color: '#FF6B35', fontStyle: 'normal' }}>business outcomes</em>, not deliverables.
               </h2>
             </FadeUp>
             <FadeUp delay={0.1}>
-              <p style={{ fontSize: '0.95rem', color: 'rgba(8,8,8,0.6)', lineHeight: 1.75, marginBottom: '1rem' }}>
+              <p style={{ fontSize: '0.95rem', color: 'rgba(8,8,8,0.65)', lineHeight: 1.75, marginBottom: '1rem' }}>
                 I've spent 11+ years translating complex problems into intuitive digital experiences — across e-commerce platforms, enterprise tools, and industrial applications. At Plexus Worldwide, I lead a 5-person design org responsible for US and 3 international markets, cutting checkout abandonment by 43% and restructuring our entire workflow around AI-augmented tooling.
               </p>
             </FadeUp>
             <FadeUp delay={0.18}>
-              <p style={{ fontSize: '0.95rem', color: 'rgba(8,8,8,0.6)', lineHeight: 1.75, marginBottom: '2rem' }}>
-                I'm drawn to companies that sense design needs to grow up — where UX maturity is still an aspiration, not a given. That's where I do my best work.
+              <p style={{ fontSize: '0.95rem', color: 'rgba(8,8,8,0.65)', lineHeight: 1.75, marginBottom: '2rem' }}>
+                I'm drawn to companies where UX maturity is still an aspiration, not a given. That's where I do my best work.
               </p>
             </FadeUp>
             <FadeUp delay={0.26}>
               <Link to="/about" style={{
-                display: 'inline-flex', alignItems: 'center', gap: 8,
+                display: 'inline-flex', alignItems: 'center', gap: 8, minHeight: 44,
                 fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.15em', fontWeight: 500,
-                color: '#080808', border: '1px solid rgba(8,8,8,0.2)', borderRadius: 9999,
+                color: '#080808', border: '1px solid rgba(8,8,8,0.22)', borderRadius: 9999,
                 padding: '0.75rem 1.5rem', textDecoration: 'none', transition: 'all 0.25s',
               }}
-              onMouseEnter={e => { e.target.style.background='#080808'; e.target.style.color='white' }}
-              onMouseLeave={e => { e.target.style.background='transparent'; e.target.style.color='#080808' }}
-              >
-                Full Profile →
-              </Link>
+              onMouseEnter={e => { e.currentTarget.style.background='#080808'; e.currentTarget.style.color='white' }}
+              onMouseLeave={e => { e.currentTarget.style.background='transparent'; e.currentTarget.style.color='#080808' }}
+              >Full Profile →</Link>
             </FadeUp>
           </div>
         </div>
       </section>
 
       {/* ── WORK ── */}
-      <section style={{ background: '#080808', padding: 'clamp(4rem,8vw,7rem) clamp(1.5rem,5vw,5rem)' }}>
-        <div style={{ maxWidth: 1400, margin: '0 auto' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3.5rem', flexWrap: 'wrap', gap: '1rem' }}>
+      <section style={{ background: '#080808', padding: SP }}>
+        <div style={MAX}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 'clamp(2rem,4vw,3.5rem)', flexWrap: 'wrap', gap: '1rem' }}>
             <FadeUp>
-              <p style={{ fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.25)', marginBottom: 8 }}>Selected Work</p>
-              <h2 style={{ fontFamily: '"Cormorant Garamond",serif', fontSize: 'clamp(1.6rem,3.5vw,3rem)', color: 'white', fontWeight: 500, margin: 0 }}>Case Studies</h2>
+              <p style={{ fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.38)', marginBottom: 8 }}>Selected Work</p>
+              <h2 style={{ fontFamily: '"Cormorant Garamond",serif', fontSize: 'clamp(1.5rem,3.5vw,3rem)', color: 'white', fontWeight: 500, margin: 0 }}>Case Studies</h2>
             </FadeUp>
             <FadeUp delay={0.1}>
-              <Link to="/work" style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.35)', textDecoration: 'none', transition: 'color 0.2s' }}
-                onMouseEnter={e => e.target.style.color='#C8FF00'}
-                onMouseLeave={e => e.target.style.color='rgba(255,255,255,0.35)'}
+              <Link to="/work" style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.50)', textDecoration: 'none', transition: 'color 0.2s' }}
+                onMouseEnter={e => e.currentTarget.style.color=BLUE}
+                onMouseLeave={e => e.currentTarget.style.color='rgba(255,255,255,0.50)'}
               >All Work →</Link>
             </FadeUp>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: '1.25rem' }}>
+          <div className="card-grid">
             {caseStudies.map((s, i) => <CaseStudyCard key={s.id} study={s} index={i} />)}
           </div>
         </div>
       </section>
 
       {/* ── CAPABILITIES ── */}
-      <section style={{ background: '#F4F1EA', padding: 'clamp(4rem,8vw,7rem) clamp(1.5rem,5vw,5rem)', borderTop: '1px solid rgba(8,8,8,0.08)' }}>
-        <div style={{ maxWidth: 1400, margin: '0 auto' }}>
+      <section style={{ background: '#F4F1EA', padding: SP, borderTop: '1px solid rgba(8,8,8,0.08)' }}>
+        <div style={MAX}>
           <FadeUp>
-            <p style={{ fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(8,8,8,0.3)', marginBottom: 8 }}>Capabilities</p>
-            <h2 style={{ fontFamily: '"Cormorant Garamond",serif', fontSize: 'clamp(1.6rem,3.5vw,3rem)', color: '#080808', fontWeight: 500, marginBottom: '3.5rem' }}>What I do for companies</h2>
+            <p style={{ fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(8,8,8,0.38)', marginBottom: 8 }}>Capabilities</p>
+            <h2 style={{ fontFamily: '"Cormorant Garamond",serif', fontSize: 'clamp(1.5rem,3.5vw,3rem)', color: '#080808', fontWeight: 500, marginBottom: 'clamp(2rem,4vw,3.5rem)' }}>What I do for companies</h2>
           </FadeUp>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(260px,1fr))', gap: 0, borderTop: '1px solid rgba(8,8,8,0.1)' }}>
+          <hr className="divider-light" />
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(260px,1fr))' }}>
             {capabilities.map((cap, i) => (
               <FadeUp key={cap.verb} delay={i * 0.1}>
-                <div style={{ padding: '2.5rem 2rem', borderRight: i < 2 ? '1px solid rgba(8,8,8,0.1)' : 'none' }}>
-                  <span style={{ fontFamily: '"Cormorant Garamond",serif', fontSize: 'clamp(2.5rem,5vw,4rem)', color: cap.color, display: 'block', marginBottom: '0.75rem', fontWeight: 500 }}>
-                    {cap.verb}
-                  </span>
-                  <h3 style={{ fontFamily: '"Cormorant Garamond",serif', fontSize: '1.25rem', color: '#080808', fontWeight: 500, lineHeight: 1.3, marginBottom: '0.75rem' }}>
-                    {cap.headline}
-                  </h3>
-                  <p style={{ fontSize: '0.85rem', color: 'rgba(8,8,8,0.55)', lineHeight: 1.7, marginBottom: '1.5rem' }}>
-                    {cap.body}
-                  </p>
+                <div style={{
+                  padding: 'clamp(1.5rem,3vw,2.5rem) clamp(1rem,2vw,2rem)',
+                  borderRight: i < capabilities.length - 1 ? '1px solid rgba(8,8,8,0.10)' : 'none',
+                }}>
+                  <span style={{ fontFamily: '"Cormorant Garamond",serif', fontSize: 'clamp(2.2rem,5vw,4rem)', color: cap.color, display: 'block', marginBottom: '0.6rem', fontWeight: 500 }}>{cap.verb}</span>
+                  <h3 style={{ fontFamily: '"Cormorant Garamond",serif', fontSize: '1.2rem', color: '#080808', fontWeight: 500, lineHeight: 1.3, marginBottom: '0.7rem' }}>{cap.headline}</h3>
+                  <p style={{ fontSize: '0.875rem', color: 'rgba(8,8,8,0.62)', lineHeight: 1.7, marginBottom: '1.25rem' }}>{cap.body}</p>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                     {cap.items.map(item => (
-                      <li key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, marginBottom: 8 }}>
-                        <span style={{ width: 4, height: 4, borderRadius: '50%', background: cap.color, flexShrink: 0, marginTop: 6 }} />
-                        <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'rgba(8,8,8,0.45)', fontWeight: 500 }}>{item}</span>
+                      <li key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, marginBottom: 7 }}>
+                        <span style={{ width: 4, height: 4, borderRadius: '50%', background: cap.color, flexShrink: 0, marginTop: 7 }} />
+                        <span style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'rgba(8,8,8,0.55)', fontWeight: 500 }}>{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -298,42 +284,38 @@ export default function Home() {
       </section>
 
       {/* ── CTA ── */}
-      <section style={{ background: '#080808', padding: 'clamp(4rem,8vw,7rem) clamp(1.5rem,5vw,5rem)', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-        <div style={{ maxWidth: 1400, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: 'clamp(2rem,5vw,5rem)', alignItems: 'center' }}>
+      <section style={{ background: '#080808', padding: SP, borderTop: '1px solid rgba(255,255,255,0.09)' }}>
+        <div style={{ ...MAX, display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(260px,1fr))', gap: 'clamp(2rem,5vw,5rem)', alignItems: 'center' }}>
           <FadeUp>
-            <p style={{ fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.2)' }}>Let's talk</p>
+            <p style={{ fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.35)' }}>Let's talk</p>
           </FadeUp>
           <FadeUp delay={0.1}>
-            <h2 style={{ fontFamily: '"Cormorant Garamond",serif', fontSize: 'clamp(1.6rem,3.5vw,3rem)', color: 'white', fontWeight: 500, lineHeight: 1.08, marginBottom: '2rem' }}>
+            <h2 style={{ fontFamily: '"Cormorant Garamond",serif', fontSize: 'clamp(1.5rem,3.5vw,3rem)', color: 'white', fontWeight: 500, lineHeight: 1.08, marginBottom: '2rem' }}>
               If your company needs design to{' '}
-              <em style={{ color: '#C8FF00', fontStyle: 'normal' }}>grow up</em>,
+              <em style={{ color: BLUE, fontStyle: 'normal' }}>grow up</em>,
               let's find out if I'm the right person to lead that.
             </h2>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
               <a href="mailto:c.kenreigh@gmail.com" style={{
-                display: 'inline-flex', alignItems: 'center', gap: 10,
+                display: 'inline-flex', alignItems: 'center', gap: 10, minHeight: 48,
                 fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.12em', fontWeight: 500,
-                color: '#080808', background: '#C8FF00', borderRadius: 9999,
-                padding: '1rem 2rem', textDecoration: 'none', transition: 'background 0.25s',
+                color: 'white', background: BLUE, borderRadius: 9999,
+                padding: '0.875rem 2rem', textDecoration: 'none', transition: 'background 0.25s',
               }}
-              onMouseEnter={e => e.target.style.background='white'}
-              onMouseLeave={e => e.target.style.background='#C8FF00'}
-              >
-                c.kenreigh@gmail.com →
-              </a>
+              onMouseEnter={e => e.currentTarget.style.background=BLUE2}
+              onMouseLeave={e => e.currentTarget.style.background=BLUE}
+              >c.kenreigh@gmail.com →</a>
               <a href="https://www.linkedin.com/in/kenreigh/" target="_blank" rel="noopener noreferrer" style={{
-                display: 'inline-flex', alignItems: 'center', gap: 8,
+                display: 'inline-flex', alignItems: 'center', gap: 8, minHeight: 48,
                 fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.12em', fontWeight: 500,
-                color: 'rgba(255,255,255,0.45)', border: '1px solid rgba(255,255,255,0.15)',
-                borderRadius: 9999, padding: '1rem 2rem', textDecoration: 'none', transition: 'all 0.25s',
+                color: 'rgba(255,255,255,0.65)', border: '1px solid rgba(255,255,255,0.22)',
+                borderRadius: 9999, padding: '0.875rem 2rem', textDecoration: 'none', transition: 'all 0.25s',
               }}
-              onMouseEnter={e => { e.currentTarget.style.color='white'; e.currentTarget.style.borderColor='rgba(255,255,255,0.4)' }}
-              onMouseLeave={e => { e.currentTarget.style.color='rgba(255,255,255,0.45)'; e.currentTarget.style.borderColor='rgba(255,255,255,0.15)' }}
-              >
-                LinkedIn ↗
-              </a>
+              onMouseEnter={e => { e.currentTarget.style.color='white'; e.currentTarget.style.borderColor='rgba(255,255,255,0.5)' }}
+              onMouseLeave={e => { e.currentTarget.style.color='rgba(255,255,255,0.65)'; e.currentTarget.style.borderColor='rgba(255,255,255,0.22)' }}
+              >LinkedIn ↗</a>
             </div>
-            <p style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.2)', marginTop: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+            <p style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.35)', marginTop: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
               480-206-2145 · Phoenix, AZ · Remote / Hybrid / Relocation
             </p>
           </FadeUp>
