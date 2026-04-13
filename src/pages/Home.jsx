@@ -61,7 +61,7 @@ const capabilities = [
   },
 ]
 
-/* shared section padding */
+const go = (setPage, p) => { setPage(p); window.scrollTo({ top: 0, behavior: 'smooth' }) }
 const SP = 'clamp(3.5rem,7vw,6.5rem) clamp(1rem,4vw,2.5rem)'
 const MAX = { maxWidth: 1400, margin: '0 auto' }
 
@@ -69,7 +69,7 @@ export default function Home({ setPage }) {
   return (
     <main>
 
-      {/* ── HERO ── */}
+      {/* HERO */}
       <section style={{
         minHeight: '100svh', background: '#080808',
         display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
@@ -83,13 +83,9 @@ export default function Home({ setPage }) {
           transition={{ duration: 0.8, delay: 0.2 }}
           style={{ position: 'absolute', top: '4.8rem', left: 'clamp(1rem,4vw,5rem)', display: 'flex', alignItems: 'center', gap: 12 }}
         >
-          <span style={{ fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.40)' }}>
-            Portfolio · 2026
-          </span>
+          <span style={{ fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.40)' }}>Portfolio · 2026</span>
           <span style={{ display: 'block', width: 28, height: 1, background: 'rgba(255,255,255,0.18)' }} />
-          <span style={{ fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(59,130,246,0.75)' }}>
-            Available for Director Roles
-          </span>
+          <span style={{ fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(59,130,246,0.75)' }}>Available for Director Roles</span>
         </motion.div>
 
         <div style={{ ...MAX, width: '100%' }}>
@@ -100,10 +96,10 @@ export default function Home({ setPage }) {
           >Christopher Kenreigh</motion.p>
 
           {[
-            { text: 'I build design',           color: 'white',                  delay: 0.45 },
-            { text: 'organizations',             color: BLUE,                     delay: 0.55, italic: true },
-            { text: 'that turn complexity',      color: 'rgba(255,255,255,0.38)', delay: 0.63 },
-            { text: 'into clarity.',             color: 'rgba(255,255,255,0.38)', delay: 0.70 },
+            { text: 'I build design',       color: 'white',                   delay: 0.45 },
+            { text: 'organizations',         color: BLUE,                      delay: 0.55, italic: true },
+            { text: 'that turn complexity',  color: 'rgba(255,255,255,0.38)',  delay: 0.63 },
+            { text: 'into clarity.',         color: 'rgba(255,255,255,0.38)',  delay: 0.70 },
           ].map(({ text, color, delay, italic }) => (
             <div key={text} style={{ overflow: 'visible', paddingBottom: '0.12em' }}>
               <motion.div
@@ -128,22 +124,20 @@ export default function Home({ setPage }) {
               Director of UX & Product Design · 11+ years across e-commerce, enterprise, and industrial.
             </p>
             <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-              <Link to="/work" style={{
+              <button onClick={() => go(setPage, 'work')} style={{
                 fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.15em',
                 fontWeight: 500, color: 'white', border: '1px solid rgba(255,255,255,0.25)',
-                borderRadius: 9999, padding: '0.75rem 1.5rem', textDecoration: 'none',
-                transition: 'all 0.25s', display: 'inline-flex', alignItems: 'center',
-                minHeight: 44,
+                borderRadius: 9999, padding: '0.75rem 1.5rem', background: 'transparent',
+                cursor: 'pointer', transition: 'all 0.25s', display: 'inline-flex', alignItems: 'center', minHeight: 44,
               }}
               onMouseEnter={e => { e.currentTarget.style.color=BLUE; e.currentTarget.style.borderColor=BLUE }}
               onMouseLeave={e => { e.currentTarget.style.color='white'; e.currentTarget.style.borderColor='rgba(255,255,255,0.25)' }}
-              >View Work →</Link>
+              >View Work →</button>
               <a href="mailto:c.kenreigh@gmail.com" style={{
                 fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.15em',
                 fontWeight: 500, color: 'white', background: BLUE,
                 borderRadius: 9999, padding: '0.75rem 1.5rem', textDecoration: 'none',
-                transition: 'background 0.25s', display: 'inline-flex', alignItems: 'center',
-                minHeight: 44,
+                transition: 'background 0.25s', display: 'inline-flex', alignItems: 'center', minHeight: 44,
               }}
               onMouseEnter={e => e.currentTarget.style.background=BLUE2}
               onMouseLeave={e => e.currentTarget.style.background=BLUE}
@@ -157,14 +151,14 @@ export default function Home({ setPage }) {
           transition={{ delay: 1.4 }}
           style={{ position: 'absolute', bottom: '2rem', right: 'clamp(1rem,4vw,2rem)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}
         >
-          <span style={{ fontSize: '0.55rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.42)' }}>Scroll</span>
+          <span style={{ fontSize: '0.55rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.40)' }}>Scroll</span>
           <div style={{ width: 1, height: 36, background: 'rgba(255,255,255,0.12)', position: 'relative', overflow: 'hidden' }}>
             <div className="scroll-dot" style={{ position: 'absolute', top: 0, width: '100%', height: '33%', background: BLUE, opacity: 0.7 }} />
           </div>
         </motion.div>
       </section>
 
-      {/* ── METRICS ── */}
+      {/* METRICS */}
       <section style={{ background: '#111111', borderTop: '1px solid rgba(255,255,255,0.09)', borderBottom: '1px solid rgba(255,255,255,0.09)' }}>
         <div style={{ ...MAX, padding: '0 clamp(1rem,4vw,2.5rem)' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(140px,1fr))' }}>
@@ -172,10 +166,7 @@ export default function Home({ setPage }) {
               <motion.div key={m.label}
                 initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.08, ease: expo }}
-                style={{
-                  padding: 'clamp(1.25rem,3vw,2rem) clamp(0.75rem,2vw,1.5rem)',
-                  borderRight: i < metrics.length - 1 ? '1px solid rgba(255,255,255,0.09)' : 'none',
-                }}
+                style={{ padding: 'clamp(1.25rem,3vw,2rem) clamp(0.75rem,2vw,1.5rem)', borderRight: i < metrics.length - 1 ? '1px solid rgba(255,255,255,0.09)' : 'none' }}
               >
                 <p style={{ fontFamily: '"Cormorant Garamond",serif', fontSize: 'clamp(1.6rem,3vw,2.5rem)', color: BLUE, margin: '0 0 6px', lineHeight: 1 }}>
                   <Counter target={m.value} suffix={m.suffix} />
@@ -188,7 +179,7 @@ export default function Home({ setPage }) {
         </div>
       </section>
 
-      {/* ── ABOUT TEASER ── */}
+      {/* ABOUT TEASER */}
       <section style={{ background: '#F4F1EA', padding: SP }}>
         <div style={{ ...MAX, display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(260px,1fr))', gap: 'clamp(2rem,5vw,5rem)', alignItems: 'start' }}>
           <SlideIn>
@@ -214,13 +205,21 @@ export default function Home({ setPage }) {
               </p>
             </FadeUp>
             <FadeUp delay={0.26}>
-              <button onClick={() => { setPage('about'); window.scrollTo({top:0,behavior:'smooth'}) }} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, minHeight: 44, fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.15em', fontWeight: 500, color: '#080808', border: '1px solid rgba(8,8,8,0.22)', borderRadius: 9999, padding: '0.75rem 1.5rem', background: 'transparent', cursor: 'pointer', transition: 'all 0.25s' }} onMouseEnter={e => { e.currentTarget.style.background='#080808'; e.currentTarget.style.color='white' }} onMouseLeave={e => { e.currentTarget.style.background='transparent'; e.currentTarget.style.color='#080808' }}>Full Profile →</button>
+              <button onClick={() => go(setPage, 'about')} style={{
+                display: 'inline-flex', alignItems: 'center', gap: 8, minHeight: 44,
+                fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.15em', fontWeight: 500,
+                color: '#080808', border: '1px solid rgba(8,8,8,0.22)', borderRadius: 9999,
+                padding: '0.75rem 1.5rem', background: 'transparent', cursor: 'pointer', transition: 'all 0.25s',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.background='#080808'; e.currentTarget.style.color='white' }}
+              onMouseLeave={e => { e.currentTarget.style.background='transparent'; e.currentTarget.style.color='#080808' }}
+              >Full Profile →</button>
             </FadeUp>
           </div>
         </div>
       </section>
 
-      {/* ── WORK ── */}
+      {/* WORK */}
       <section style={{ background: '#080808', padding: SP }}>
         <div style={MAX}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 'clamp(2rem,4vw,3.5rem)', flexWrap: 'wrap', gap: '1rem' }}>
@@ -229,7 +228,10 @@ export default function Home({ setPage }) {
               <h2 style={{ fontFamily: '"Cormorant Garamond",serif', fontSize: 'clamp(1.5rem,3.5vw,3rem)', color: 'white', fontWeight: 500, margin: 0 }}>Case Studies</h2>
             </FadeUp>
             <FadeUp delay={0.1}>
-              <button onClick={() => { setPage('work'); window.scrollTo({top:0,behavior:'smooth'}) }} style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.50)', background: 'none', border: 'none', cursor: 'pointer', padding: 0, transition: 'color 0.2s' }} onMouseEnter={e => e.currentTarget.style.color='#3B82F6'} onMouseLeave={e => e.currentTarget.style.color='rgba(255,255,255,0.50)'}>All Work →</button>
+              <button onClick={() => go(setPage, 'work')} style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.50)', background: 'none', border: 'none', cursor: 'pointer', padding: 0, transition: 'color 0.2s' }}
+                onMouseEnter={e => e.currentTarget.style.color=BLUE}
+                onMouseLeave={e => e.currentTarget.style.color='rgba(255,255,255,0.50)'}
+              >All Work →</button>
             </FadeUp>
           </div>
           <div className="card-grid">
@@ -238,7 +240,7 @@ export default function Home({ setPage }) {
         </div>
       </section>
 
-      {/* ── CAPABILITIES ── */}
+      {/* CAPABILITIES */}
       <section style={{ background: '#F4F1EA', padding: SP, borderTop: '1px solid rgba(8,8,8,0.08)' }}>
         <div style={MAX}>
           <FadeUp>
@@ -249,10 +251,7 @@ export default function Home({ setPage }) {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(260px,1fr))' }}>
             {capabilities.map((cap, i) => (
               <FadeUp key={cap.verb} delay={i * 0.1}>
-                <div style={{
-                  padding: 'clamp(1.5rem,3vw,2.5rem) clamp(1rem,2vw,2rem)',
-                  borderRight: i < capabilities.length - 1 ? '1px solid rgba(8,8,8,0.10)' : 'none',
-                }}>
+                <div style={{ padding: 'clamp(1.5rem,3vw,2.5rem) clamp(1rem,2vw,2rem)', borderRight: i < capabilities.length - 1 ? '1px solid rgba(8,8,8,0.10)' : 'none' }}>
                   <span style={{ fontFamily: '"Cormorant Garamond",serif', fontSize: 'clamp(2.2rem,5vw,4rem)', color: cap.color, display: 'block', marginBottom: '0.6rem', fontWeight: 500 }}>{cap.verb}</span>
                   <h3 style={{ fontFamily: '"Cormorant Garamond",serif', fontSize: '1.2rem', color: '#080808', fontWeight: 500, lineHeight: 1.3, marginBottom: '0.7rem' }}>{cap.headline}</h3>
                   <p style={{ fontSize: '0.875rem', color: 'rgba(8,8,8,0.62)', lineHeight: 1.7, marginBottom: '1.25rem' }}>{cap.body}</p>
@@ -271,7 +270,7 @@ export default function Home({ setPage }) {
         </div>
       </section>
 
-      {/* ── CTA ── */}
+      {/* CTA */}
       <section style={{ background: '#080808', padding: SP, borderTop: '1px solid rgba(255,255,255,0.09)' }}>
         <div style={{ ...MAX, display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(260px,1fr))', gap: 'clamp(2rem,5vw,5rem)', alignItems: 'center' }}>
           <FadeUp>
