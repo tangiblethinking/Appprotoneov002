@@ -83,7 +83,7 @@ const skills = {
   'Tooling':           ['Figma', 'MUI / React', 'Google MD3', 'LLM-augmented workflows', 'Agile / Scrum'],
 }
 
-export default function Resume() {
+export default function Resume({ setPage }) {
   return (
     <main style={{ background: '#F4F1EA', minHeight: '100vh' }}>
 
