@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
 import { FadeUp, SlideIn } from '../components/Motion'
 import { CaseStudyCard } from '../components/CaseStudyCard'
@@ -66,7 +65,7 @@ const capabilities = [
 const SP = 'clamp(3.5rem,7vw,6.5rem) clamp(1rem,4vw,2.5rem)'
 const MAX = { maxWidth: 1400, margin: '0 auto' }
 
-export default function Home() {
+export default function Home({ setPage }) {
   return (
     <main>
 
@@ -215,15 +214,7 @@ export default function Home() {
               </p>
             </FadeUp>
             <FadeUp delay={0.26}>
-              <Link to="/about" style={{
-                display: 'inline-flex', alignItems: 'center', gap: 8, minHeight: 44,
-                fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.15em', fontWeight: 500,
-                color: '#080808', border: '1px solid rgba(8,8,8,0.22)', borderRadius: 9999,
-                padding: '0.75rem 1.5rem', textDecoration: 'none', transition: 'all 0.25s',
-              }}
-              onMouseEnter={e => { e.currentTarget.style.background='#080808'; e.currentTarget.style.color='white' }}
-              onMouseLeave={e => { e.currentTarget.style.background='transparent'; e.currentTarget.style.color='#080808' }}
-              >Full Profile →</Link>
+              <button onClick={() => { setPage('about'); window.scrollTo({top:0,behavior:'smooth'}) }} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, minHeight: 44, fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.15em', fontWeight: 500, color: '#080808', border: '1px solid rgba(8,8,8,0.22)', borderRadius: 9999, padding: '0.75rem 1.5rem', background: 'transparent', cursor: 'pointer', transition: 'all 0.25s' }} onMouseEnter={e => { e.currentTarget.style.background='#080808'; e.currentTarget.style.color='white' }} onMouseLeave={e => { e.currentTarget.style.background='transparent'; e.currentTarget.style.color='#080808' }}>Full Profile →</button>
             </FadeUp>
           </div>
         </div>
@@ -238,10 +229,7 @@ export default function Home() {
               <h2 style={{ fontFamily: '"Cormorant Garamond",serif', fontSize: 'clamp(1.5rem,3.5vw,3rem)', color: 'white', fontWeight: 500, margin: 0 }}>Case Studies</h2>
             </FadeUp>
             <FadeUp delay={0.1}>
-              <Link to="/work" style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.50)', textDecoration: 'none', transition: 'color 0.2s' }}
-                onMouseEnter={e => e.currentTarget.style.color=BLUE}
-                onMouseLeave={e => e.currentTarget.style.color='rgba(255,255,255,0.50)'}
-              >All Work →</Link>
+              <button onClick={() => { setPage('work'); window.scrollTo({top:0,behavior:'smooth'}) }} style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.50)', background: 'none', border: 'none', cursor: 'pointer', padding: 0, transition: 'color 0.2s' }} onMouseEnter={e => e.currentTarget.style.color='#3B82F6'} onMouseLeave={e => e.currentTarget.style.color='rgba(255,255,255,0.50)'}>All Work →</button>
             </FadeUp>
           </div>
           <div className="card-grid">
