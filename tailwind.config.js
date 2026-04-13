@@ -10,10 +10,9 @@ export default {
       colors: {
         ink:    '#080808',
         paper:  '#F4F1EA',
-        chalk:  '#E8E4DB',
-        zinc:   '#1A1A1A',
-        mist:   '#8A8880',
-        accent: '#C8FF00',
+        zinc:   '#111111',
+        mist:   '#A8A49E',
+        accent: '#3B82F6',
         warm:   '#FF6B35',
       },
     },
