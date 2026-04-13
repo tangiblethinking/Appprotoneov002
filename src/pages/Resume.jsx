@@ -102,7 +102,7 @@ export default function Resume() {
 
           {/* PDF download — place file at public/resume.pdf */}
           <a
-            href="/director/resume.pdf"
+            href="/director/Resume.pdf"
             download
             style={{
               display: 'inline-flex', alignItems: 'center', gap: 8, minHeight: 44,
