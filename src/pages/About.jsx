@@ -20,7 +20,7 @@ const timeline = [
   { period: '2014 – 2019',    role: 'Senior UX Designer',                              company: 'Glynlyon Inc',         location: 'Phoenix, AZ · Office', color: '#8A8880', wins: ['65% increase in product ease of use', 'WCAG and ADA compliance across all platforms'] },
 ]
 
-export default function About() {
+export default function About({ setPage }) {
   return (
     <main>
 
