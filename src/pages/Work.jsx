@@ -6,7 +6,7 @@ const BLUE = '#3B82F6'
 const SP   = 'clamp(3.5rem,7vw,6.5rem) clamp(1rem,4vw,2.5rem)'
 const MAX  = { maxWidth: 1400, margin: '0 auto' }
 
-export default function Work() {
+export default function Work({ setPage }) {
   return (
     <main style={{ background: '#080808', minHeight: '100vh' }}>
       <div style={{ ...MAX, padding: 'clamp(1rem,4vw,2.5rem)', paddingTop: 'clamp(5rem,10vw,8rem)' }}>
