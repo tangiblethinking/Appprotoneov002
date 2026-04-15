@@ -13,7 +13,7 @@ const LBL = {
 
 const experience = [
   {
-    title: 'Principal Product Designer (Acting Design Lead)',
+    title: 'UX Design Director',
     company: 'Plexus Worldwide', url: 'https://www.plexusworldwide.com',
     period: '05/2024 – Present', location: 'Phoenix, AZ · Office',
     bullets: [
@@ -25,7 +25,7 @@ const experience = [
     ],
   },
   {
-    title: 'Freelance UX Consultant',
+    title: 'UX Consultant',
     company: 'Independent Practice', url: null,
     period: '10/2026 – 05/2026', location: 'Remote',
     bullets: [
