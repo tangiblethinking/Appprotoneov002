@@ -12,7 +12,7 @@ const philosophy = [
 ]
 
 const timeline = [
-  { period: '2024 – Present', role: 'Principal Product Designer (Acting Design Lead)', company: 'Plexus Worldwide',     location: 'Phoenix, AZ · Office', color: BLUE,      wins: ['43% reduction in checkout abandonment', 'Launched 3 international e-commerce regions', 'Consolidated 6 tools → 1 unified design system', '35% sprint velocity increase via LLM tooling'] },
+  { period: '2024 – Present', role: 'UX Design Director', company: 'Plexus Worldwide',     location: 'Phoenix, AZ · Office', color: BLUE,      wins: ['43% reduction in checkout abandonment', 'Launched 3 international e-commerce regions', 'Consolidated 6 tools → 1 unified design system', '35% sprint velocity increase via LLM tooling'] },
   { period: '2026 – 2026',    role: 'Freelance UX Consultant',                         company: 'Independent Practice', location: 'Remote',               color: '#8B5CF6', wins: ['UX strategy & design systems consulting', 'Deepened AI-augmented design workflow expertise'] },
   { period: '2022 – 2023',    role: 'Senior Product Designer',                         company: 'Freeport-McMoRan',     location: 'Phoenix, AZ · Hybrid', color: '#FF6B35', wins: ['30% improvement in mining worker efficiency', 'Scalable UI design system across 3 platforms', '5 major releases approved through C-suite roadmaps'] },
   { period: '2021 – 2022',    role: 'Senior Product Designer',                         company: 'OpenTech Alliance',    location: 'Phoenix, AZ · Hybrid', color: '#FF6B35', wins: ['75% increase in POS completion rates', '25% e-commerce fulfillment improvement'] },
