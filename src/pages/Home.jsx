@@ -185,7 +185,7 @@ export default function Home({ setPage }) {
           <SlideIn>
             <p style={{ fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(8,8,8,0.38)', marginBottom: 12 }}>About</p>
             <hr className="divider-light" style={{ marginBottom: 20 }} />
-            <p style={{ fontSize: '0.75rem', color: 'rgba(8,8,8,0.48)', lineHeight: 1.6 }}>Phoenix, AZ · Available Nationwide</p>
+            <p style={{ fontSize: '0.75rem', color: 'rgba(8,8,8,0.48)', lineHeight: 1.6 }}>USA Based · Remote / Hybrid / Relocation</p>
           </SlideIn>
           <div>
             <FadeUp>
@@ -303,7 +303,7 @@ export default function Home({ setPage }) {
               >LinkedIn ↗</a>
             </div>
             <p style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.35)', marginTop: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-              480-206-2145 · Phoenix, AZ · Remote / Hybrid / Relocation
+              480-206-2145 · USA Based · Remote / Hybrid / Relocation
             </p>
           </FadeUp>
         </div>
