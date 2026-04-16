@@ -60,7 +60,7 @@ export function Footer({ setPage }) {
           onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.65)'}
           >c.kenreigh@gmail.com</a>
           <p style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.3)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-            Phoenix, AZ · © 2026
+            USA Based · © 2026
           </p>
         </div>
       </div>
