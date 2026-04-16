@@ -27,7 +27,7 @@ const experience = [
   {
     title: 'UX Consultant',
     company: 'Independent Practice', url: null,
-    period: '10/2026 – 05/2026', location: 'Remote',
+    period: '10/2023 – 06/2024', location: 'Remote',
     bullets: [
       'Delivered UX strategy and design systems consulting for e-commerce clients during intentional transition between leadership roles.',
       'Deepened expertise in AI-augmented prototyping and LLM-assisted research synthesis.',
@@ -36,7 +36,7 @@ const experience = [
   {
     title: 'Senior Product Designer',
     company: 'Freeport-McMoRan', url: 'https://www.freeportmcmoran.com',
-    period: '08/2022 – 10/2026', location: 'Phoenix, AZ · Hybrid',
+    period: '08/2022 – 10/2023', location: 'Phoenix, AZ · Hybrid',
     bullets: [
       'Led end-to-end design for mining operation digital tools across web, iOS, and Android — improving worker efficiency 30%.',
       'Facilitated 10 stakeholder workshops to define user needs and translate insights into actionable product requirements.',
