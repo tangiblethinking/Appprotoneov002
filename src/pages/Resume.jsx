@@ -17,7 +17,7 @@ const experience = [
     company: 'Plexus Worldwide', url: 'https://www.plexusworldwide.com',
     period: '05/2024 – Present', location: 'Phoenix, AZ · Office',
     bullets: [
-      'Directed a 5-person cross-disciplinary design org (UX, content, interaction) across US and 3 international e-commerce markets — owning team structure, project allocation, design quality, and direct 1:1 mentorship.',
+      'Directing a growing team of 7 cross-disciplinary designers (UX, content, research, interaction) across US and 3 international e-commerce markets — owning team structure, project allocation, design quality, and direct 1:1 mentorship.',
       'Reduced checkout abandonment 43% through data-driven UX redesign of mobile-first PDPs, PLPs, and cart flows — informed by Power BI behavioral analytics.',
       'Consolidated 6 fragmented design tools into a unified platform, cutting team inefficiency 60% and implementing a token-based design system for CMS consistency.',
       'Led org-wide adoption of LLM-driven design tools, increasing sprint delivery velocity 35% across product and engineering teams.',
