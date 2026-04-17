@@ -247,7 +247,7 @@ export default function Home({ setPage }) {
         <div style={MAX}>
           <FadeUp>
             <p style={{ fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(8,8,8,0.38)', marginBottom: 8 }}>Capabilities</p>
-            <h2 style={{ fontFamily: '"Cormorant Garamond",serif', fontSize: 'clamp(1.5rem,3.5vw,3rem)', color: '#080808', fontWeight: 500, marginBottom: 'clamp(2rem,4vw,3.5rem)' }}>What I do for companies</h2>
+            <h2 style={{ fontFamily: '"Cormorant Garamond",serif', fontSize: 'clamp(1.5rem,3.5vw,3rem)', color: '#080808', fontWeight: 500, marginBottom: 'clamp(2rem,4vw,3.5rem)' }}>What I get done</h2>
           </FadeUp>
           <hr className="divider-light" />
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(260px,1fr))' }}>
