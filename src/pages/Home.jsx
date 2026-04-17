@@ -144,18 +144,20 @@ export default function Home({ setPage }) {
               >Contact</a>
             </div>
           </motion.div>
-        </div>
 
+        {/* Scroll indicator — in flow, 16px below CTA, centered */}
         <motion.div
           initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ delay: 1.4 }}
-          style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, marginTop: '16px' }}
         >
           <span style={{ fontSize: '0.55rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.40)' }}>Scroll</span>
           <div style={{ width: 1, height: 36, background: 'rgba(255,255,255,0.12)', position: 'relative', overflow: 'hidden' }}>
             <div className="scroll-dot" style={{ position: 'absolute', top: 0, width: '100%', height: '33%', background: BLUE, opacity: 0.7 }} />
           </div>
         </motion.div>
+        </div>
+
       </section>
 
       {/* METRICS */}
