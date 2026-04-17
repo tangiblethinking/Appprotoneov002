@@ -34,7 +34,7 @@ const experience = [
     ],
   },
   {
-    title: 'Senior Product Designer',
+    title: 'Senior Product Manager',
     company: 'Freeport-McMoRan', url: 'https://www.freeportmcmoran.com',
     period: '08/2022 – 10/2023', location: 'Phoenix, AZ · Hybrid',
     bullets: [
@@ -45,7 +45,7 @@ const experience = [
     ],
   },
   {
-    title: 'Senior Product Designer',
+    title: 'Senior Product Manager',
     company: 'OpenTech Alliance', url: 'https://www.opentechalliance.com',
     period: '05/2021 – 08/2022', location: 'Phoenix, AZ · Hybrid',
     bullets: [
@@ -55,7 +55,7 @@ const experience = [
     ],
   },
   {
-    title: 'UX Design Operator',
+    title: 'UX Design Lead',
     company: 'Siemens', url: 'https://www.siemens.com',
     period: '07/2020 – 05/2021', location: 'Phoenix, AZ · Remote',
     bullets: [
