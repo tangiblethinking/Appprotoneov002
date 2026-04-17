@@ -46,7 +46,7 @@ export const caseStudies = [
   {
     id:      'E-commerce Persona Generator',
     index:   '05',
-    title:   'Getting quality from quantity | Scaling Revenue Generator from Behavorial Metric',
+    title:   'Getting quality from quantity | Scaling Revenue Generator from Behavorial Metrics',
     company: 'E-commerce • Retail',
     year:    '2025 - 2026',
     outcome: 'Enabled the organization to operate as a coordinated, insight-driven engine to optimize the performance of brand discovery, member expansion, and subsciption volumes.',
