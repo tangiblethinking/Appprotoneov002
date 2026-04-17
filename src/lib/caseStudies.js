@@ -32,4 +32,15 @@ export const caseStudies = [
     color:   '#8B5CF6',
     href:    'https://company-ux-transform.vercel.app/',
   },
+  {
+    id:      'new-study',
+    index:   '04',
+    title:   'Case Study Title — Edit in src/lib/caseStudies.js',
+    company: 'Company Name',
+    year:    '2026',
+    outcome: 'Edit this outcome description in src/lib/caseStudies.js — describe the business problem and measurable result in 1–2 sentences.',
+    tags:    ['Tag One', 'Tag Two', 'Tag Three'],
+    color:   '#10B981',
+    href:    'https://teststudynew.vercel.app/',
+  },
 ]
