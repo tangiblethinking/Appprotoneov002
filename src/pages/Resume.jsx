@@ -96,7 +96,7 @@ export default function Resume({ setPage }) {
               Christopher Kenreigh
             </h1>
             <p style={{ color: 'rgba(255,255,255,0.62)', fontSize: '0.95rem' }}>
-              Director of UX & Product Design · Phoenix, AZ
+              Director of UX & Product Design · USA / Remote / Office
             </p>
           </FadeUp>
 
