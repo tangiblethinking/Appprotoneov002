@@ -127,7 +127,7 @@ export default function About({ setPage }) {
               onMouseEnter={e => e.currentTarget.style.color='#FF6B35'}
               onMouseLeave={e => e.currentTarget.style.color='#080808'}
             >c.kenreigh@gmail.com</a>
-            <p style={{ fontSize: '0.85rem', color: 'rgba(8,8,8,0.52)', marginBottom: 12 }}>480-206-2145 · USA / Remote/ Office</p>
+              <p style={{ fontSize: '0.85rem', color: 'rgba(8,8,8,0.52)', marginBottom: 12 }}>480-206-2145 · USA / Remote / Office</p>
             <a href="https://www.linkedin.com/in/kenreigh/" target="_blank" rel="noopener noreferrer"
               style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'rgba(8,8,8,0.48)', textDecoration: 'none', transition: 'color 0.2s' }}
               onMouseEnter={e => e.currentTarget.style.color='#080808'}
