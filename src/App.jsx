@@ -23,7 +23,7 @@ export default function App() {
         <div style={{ display: page === 'resume' ? 'block' : 'none' }}><Resume setPage={setPage} /></div>
       </div>
       <Footer setPage={setPage} />
-      <PortfolioOverlay open={portfolioOpen} onClose={() => setPortfolioOpen(false)} />
+      <PortfolioOverlay open={portfolioOpen} onClose={() => setPortfolioOpen(false)} setPage={setPage} />
     </>
   )
 }

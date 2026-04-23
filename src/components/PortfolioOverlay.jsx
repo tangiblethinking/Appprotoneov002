@@ -3,8 +3,20 @@ import { useEffect, useRef } from 'react'
 const BLUE  = '#3B82F6'
 const URL   = 'https://www.uxapex.com/portfolioa32'
 
-export function PortfolioOverlay({ open, onClose }) {
+const NAV_LINKS = [
+  { label: 'Case Studies', page: 'work' },
+  { label: 'About',        page: 'about' },
+  { label: 'Resume',       page: 'resume' },
+]
+
+export function PortfolioOverlay({ open, onClose, setPage }) {
   const iframeRef = useRef(null)
+
+  const navigate = (page) => {
+    onClose()
+    setPage(page)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   // Lock body scroll while overlay is open
   useEffect(() => {
@@ -43,14 +55,14 @@ export function PortfolioOverlay({ open, onClose }) {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '0 clamp(1rem, 4vw, 2rem)',
+        padding: '0 clamp(1rem, 4vw, 2.5rem)',
         background: 'rgba(8,8,8,0.94)',
         backdropFilter: 'blur(14px)',
         WebkitBackdropFilter: 'blur(14px)',
         borderBottom: '1px solid rgba(255,255,255,0.08)',
       }}>
 
-        {/* Left — Back button + pipe + title */}
+        {/* Left — Back button + pipe + Portfolio title */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
           <button
             onClick={onClose}
@@ -73,14 +85,12 @@ export function PortfolioOverlay({ open, onClose }) {
             onMouseEnter={e => e.currentTarget.style.color = 'white'}
             onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.72)'}
           >
-            {/* Left arrow */}
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ flexShrink: 0 }}>
               <path d="M9 2L4 7L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
             Back
           </button>
 
-          {/* Pipe divider */}
           <span style={{
             color: 'rgba(255,255,255,0.20)',
             fontSize: '1rem',
@@ -89,7 +99,6 @@ export function PortfolioOverlay({ open, onClose }) {
             userSelect: 'none',
           }}>|</span>
 
-          {/* Title */}
           <span style={{
             fontFamily: '"DM Sans", Helvetica Neue, sans-serif',
             fontSize: '0.7rem',
@@ -100,7 +109,52 @@ export function PortfolioOverlay({ open, onClose }) {
           }}>Portfolio</span>
         </div>
 
-        {/* Right — × close button */}
+        {/* Center — site nav links */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
+          {NAV_LINKS.map(({ label, page }) => (
+            <button
+              key={page}
+              onClick={() => navigate(page)}
+              style={{
+                fontSize: '0.7rem',
+                textTransform: 'uppercase',
+                letterSpacing: '0.15em',
+                fontWeight: 500,
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: 0,
+                color: 'rgba(255,255,255,0.72)',
+                fontFamily: '"DM Sans", Helvetica Neue, sans-serif',
+                transition: 'color 0.2s',
+              }}
+              onMouseEnter={e => e.currentTarget.style.color = 'white'}
+              onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.72)'}
+            >{label}</button>
+          ))}
+
+          {/* Contact — pill button matching main nav */}
+          <a
+            href="mailto:c.kenreigh@gmail.com"
+            style={{
+              fontSize: '0.7rem',
+              textTransform: 'uppercase',
+              letterSpacing: '0.15em',
+              fontWeight: 500,
+              fontFamily: '"DM Sans", Helvetica Neue, sans-serif',
+              textDecoration: 'none',
+              color: 'rgba(255,255,255,0.82)',
+              border: '1px solid rgba(255,255,255,0.25)',
+              borderRadius: 9999,
+              padding: '0.5rem 1.25rem',
+              transition: 'all 0.25s',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.color = BLUE; e.currentTarget.style.borderColor = BLUE }}
+            onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.82)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)' }}
+          >Contact</a>
+        </div>
+
+        {/* Right — × close */}
         <button
           onClick={onClose}
           aria-label="Close portfolio"
