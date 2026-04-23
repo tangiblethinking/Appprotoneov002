@@ -3,13 +3,13 @@ import { useState, useEffect } from 'react'
 const BLUE = '#3B82F6'
 
 const links = [
-  { label: 'Case Studies',   page: 'work' },
-  { label: 'About',  page: 'about' },
-  { label: 'Resume', page: 'resume' },
-  { label: 'Portfolio', page: 'resume' },
+  { label: 'Case Studies', page: 'work' },
+  { label: 'About',        page: 'about' },
+  { label: 'Resume',       page: 'resume' },
+  { label: 'Portfolio',    page: 'portfolio' },
 ]
 
-export function Nav({ page, setPage }) {
+export function Nav({ page, setPage, openPortfolio }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen]         = useState(false)
 
@@ -21,6 +21,11 @@ export function Nav({ page, setPage }) {
 
   // close mobile menu and scroll to top on page change
   const go = (p) => {
+    if (p === 'portfolio') {
+      setOpen(false)
+      openPortfolio()
+      return
+    }
     setPage(p)
     setOpen(false)
     window.scrollTo({ top: 0, behavior: 'smooth' })
