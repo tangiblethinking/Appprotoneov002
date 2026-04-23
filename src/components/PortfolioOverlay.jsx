@@ -109,7 +109,7 @@ export function PortfolioOverlay({ open, onClose, setPage }) {
           }}>Portfolio</span>
         </div>
 
-        {/* Center — site nav links */}
+        {/* Right — nav links + Contact pill + pipe + × close */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
           {NAV_LINKS.map(({ label, page }) => (
             <button
@@ -133,7 +133,7 @@ export function PortfolioOverlay({ open, onClose, setPage }) {
             >{label}</button>
           ))}
 
-          {/* Contact — pill button matching main nav */}
+          {/* Contact pill */}
           <a
             href="mailto:c.kenreigh@gmail.com"
             style={{
@@ -152,31 +152,42 @@ export function PortfolioOverlay({ open, onClose, setPage }) {
             onMouseEnter={e => { e.currentTarget.style.color = BLUE; e.currentTarget.style.borderColor = BLUE }}
             onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.82)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)' }}
           >Contact</a>
-        </div>
 
-        {/* Right — × close */}
-        <button
-          onClick={onClose}
-          aria-label="Close portfolio"
-          style={{
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            color: 'rgba(255,255,255,0.55)',
-            padding: '6px',
+          {/* Pipe divider */}
+          <span style={{
+            color: 'rgba(255,255,255,0.20)',
+            fontSize: '1rem',
+            fontWeight: 200,
             lineHeight: 1,
-            transition: 'color 0.2s',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-          onMouseEnter={e => e.currentTarget.style.color = 'white'}
-          onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.55)'}
-        >
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-            <path d="M2 2L16 16M16 2L2 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-          </svg>
-        </button>
+            userSelect: 'none',
+            marginLeft: '-0.5rem',
+          }}>|</span>
+
+          {/* × close */}
+          <button
+            onClick={onClose}
+            aria-label="Close portfolio"
+            style={{
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              color: 'rgba(255,255,255,0.55)',
+              padding: '6px',
+              lineHeight: 1,
+              transition: 'color 0.2s',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginLeft: '-0.5rem',
+            }}
+            onMouseEnter={e => e.currentTarget.style.color = 'white'}
+            onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.55)'}
+          >
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M2 2L16 16M16 2L2 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+            </svg>
+          </button>
+        </div>
       </div>
 
       {/* ── iframe fills remaining space ── */}
