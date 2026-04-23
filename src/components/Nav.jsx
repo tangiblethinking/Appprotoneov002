@@ -3,9 +3,10 @@ import { useState, useEffect } from 'react'
 const BLUE = '#3B82F6'
 
 const links = [
-  { label: 'Work',   page: 'work' },
+  { label: 'Case Studies',   page: 'work' },
   { label: 'About',  page: 'about' },
   { label: 'Resume', page: 'resume' },
+  { label: 'Portfolio', page: 'resume' },
 ]
 
 export function Nav({ page, setPage }) {
