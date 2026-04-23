@@ -97,7 +97,7 @@ export default function Home({ setPage }) {
 
           {[
             { text: 'I build design',       color: 'white',                   delay: 0.45 },
-            { text: 'organizations',         color: BLUE,                      delay: 0.55, italic: true },
+            { text: 'operations',         color: BLUE,                      delay: 0.55, italic: true },
             { text: 'that turn complexity',  color: 'rgba(255,255,255,0.38)',  delay: 0.63 },
             { text: 'into clarity.',         color: 'rgba(255,255,255,0.38)',  delay: 0.70 },
           ].map(({ text, color, delay, italic }) => (
