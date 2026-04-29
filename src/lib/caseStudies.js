@@ -54,4 +54,15 @@ export const caseStudies = [
     color:   '#FFC300',
     href:    'https://persongratadata.vercel.app/',
   },
+  {
+    id:      'Maturity through onboarding Methodologies',
+    index:   '06',
+    title:   'Getting quality from quantity | Scaling Revenue Generator from Behavorial Metrics',
+    company: 'Design Operations • optimizing workflows, tools, and team culture',
+    year:    '2025',
+    outcome: 'A unified "source of truth" that creates bi-lateral accountability, ensures consistency of a product, and improves communications between design, engineering, product, and business units.',
+    tags:    ['Start with quality = End with quality', 'Product Governance', 'Cross Functional Accountability'],
+    color:   '#E00004',
+    href:    'https://opodesignonovo.vercel.app/',
+  },
 ]
